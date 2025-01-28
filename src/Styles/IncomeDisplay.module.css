@@ -1,0 +1,23 @@
+.icon {
+    width: 24px;
+    height: 24px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper > div {
+    flex: 1 1 0;
+    display: flex;
+    place-items: center;
+    font-size: clamp(1.5rem, 2vh, 2.5rem);
+}
+
+.wrapper > div > p {
+    margin: 0px;
+}
+
+
+
