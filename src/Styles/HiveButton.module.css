@@ -1,0 +1,19 @@
+.icon {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transform: scale(1);
+    width: 40%;
+    transition: 0.25s transform ease-in-out;
+}
+
+@media (hover: hover) {
+    .icon:hover {
+        transform: scale(1.125);
+    }
+}
+
+.icon:active {
+    transform: scale(1);
+    transition: 0.1s transform ease-in-out;
+}

@@ -1,0 +1,14 @@
+.topBar{
+    flex: 1 1 0;
+}
+
+.main {
+    flex: 8 1 0;
+    display: flex;
+    place-content: space-around;
+    place-items: center;
+}
+
+.bottomBar {
+    flex: 1 1 0;
+}
