@@ -2,9 +2,9 @@ import hiveButton from "../Styles/HiveButton.module.css";
 import hiveBox from "../Assets/HiveBox.svg";
 import PropTypes from "prop-types";
 
-export default function HiveButton({ money ,setMoney }) {
+export default function HiveButton({ money ,setMoney, moneyMult }) {
     const handleClick = () => {
-        setMoney(money + 1)
+        setMoney(money + moneyMult)
     }
   return (
     <button className={hiveButton.icon} onClick={handleClick}>
@@ -16,4 +16,5 @@ export default function HiveButton({ money ,setMoney }) {
 HiveButton.propTypes = {
     money: PropTypes.number,
     setMoney: PropTypes.func,
+    moneyMult: PropTypes.number
 }
