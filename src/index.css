@@ -7,4 +7,5 @@ body {
   height: 100vh;
   flex-direction: column;
   width: 60vw;
+  margin: auto;
 }
