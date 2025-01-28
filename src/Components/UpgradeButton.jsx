@@ -1,5 +1,4 @@
 import upgrades from "../Styles/Upgrades.module.css";
-import UpgradeDrawer from "./UpgradeDrawer";
 
 export default function UpgradeButton () {
     const handleClick = () => {
@@ -7,7 +6,7 @@ export default function UpgradeButton () {
     }
     return  (
         <div className={upgrades.container}>
-            <button className={upgrades.btn} onClick={handleClick}>Upgrades</button>
+            <button className={upgrades.btn} onClick={handleClick}>SHOP</button>
         </div>
     )
 }
