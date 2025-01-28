@@ -1,0 +1,17 @@
+.btn {
+    cursor: pointer;
+    width: 60%;
+    height: 50%;
+    border: 0px;
+    background-color: #da9100;
+    color: white;
+    font-size: clamp(2rem, 2vh, 3rem);
+    font-weight: 900;
+    transition: 0.2s background-color ease-in;
+}
+
+@media (hover: hover) {
+    .btn:hover {
+        background-color: #bd7e00;
+    }
+}

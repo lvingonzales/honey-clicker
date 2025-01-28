@@ -2,6 +2,7 @@ import { useState } from "react";
 import HiveButton from "./Components/HiveButton";
 import "./Styles/App.css";
 import IncomeDisplay from "./Components/IncomeDisplay";
+import UpgradeButton from "./Components/UpgradeButton";
 
 export default function App () {
     const [money, setMoney] = useState(0);
@@ -17,7 +18,7 @@ export default function App () {
                 <HiveButton money={money} moneyMult={moneyMult} setMoney={setMoney}/>
             </div>
             <div className="bottomBar">
-
+                <UpgradeButton />
             </div>
         </>
     )
