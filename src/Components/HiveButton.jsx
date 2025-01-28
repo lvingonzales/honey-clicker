@@ -1,6 +1,6 @@
-import "../Styles/HiveButton.css";
+import hiveButton from"../Styles/HiveButton.module.css";
 import hiveBox from "../Assets/HiveBox.svg";
 
 export default function HiveButton() {
-    return <img src={hiveBox} alt="Hive Box" />
+    return <img className={hiveButton.icon} src={hiveBox} alt="Hive Box" />
 }
