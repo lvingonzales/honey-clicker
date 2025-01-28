@@ -1,4 +1,6 @@
 .icon {
+    background-color: transparent;
+    border: none;
     cursor: pointer;
     transform: scale(1);
     width: 40%;
