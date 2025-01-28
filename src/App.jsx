@@ -3,6 +3,7 @@ import HiveButton from "./Components/HiveButton";
 import "./Styles/App.css";
 import IncomeDisplay from "./Components/IncomeDisplay";
 import UpgradeButton from "./Components/UpgradeButton";
+import UpgradeDrawer from "./Components/UpgradeDrawer";
 
 export default function App () {
     const [money, setMoney] = useState(0);
@@ -19,6 +20,7 @@ export default function App () {
             </div>
             <div className="bottomBar">
                 <UpgradeButton />
+                <UpgradeDrawer />
             </div>
         </>
     )
