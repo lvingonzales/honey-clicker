@@ -1,13 +1,18 @@
 import hiveButton from "../Styles/HiveButton.module.css";
 import hiveBox from "../Assets/HiveBox.svg";
 import PropTypes from "prop-types";
+import { useContext } from "react";
+import { MoneyContext } from "./Contexts";
 
-export default function HiveButton({ money ,setMoney, moneyMult }) {
+export default function HiveButton({multiplier}) {
+  const {money, setMoney} = useContext(MoneyContext);
+
     const handleClick = () => {
-        setMoney(money + moneyMult)
+        document.getElementById("apiary").classList.add(hiveButton.rotateRight)
+        setMoney((Math.round((money + multiplier)*100)/100));
     }
   return (
-    <button className={hiveButton.icon} onClick={handleClick}>
+    <button id="apiary" className={hiveButton.icon} onClick={handleClick}>
         <img src={hiveBox} alt="Hive Box" />
     </button>
   ) 
@@ -16,5 +21,5 @@ export default function HiveButton({ money ,setMoney, moneyMult }) {
 HiveButton.propTypes = {
     money: PropTypes.number,
     setMoney: PropTypes.func,
-    moneyMult: PropTypes.number
+    multiplier: PropTypes.number
 }

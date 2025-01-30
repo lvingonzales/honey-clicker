@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import incomeDisplay from "../Styles/IncomeDisplay.module.css"
 import honeyIcon from "/Honey.svg"
 
-export default function IncomeDisplay ({money, moneyMult, income}) {
+export default function IncomeDisplay ({money, multiplier, income}) {
     return (
         <>
             <div className={incomeDisplay.wrapper}>
@@ -13,7 +13,7 @@ export default function IncomeDisplay ({money, moneyMult, income}) {
                     <p className={incomeDisplay.income}>${income}/sec</p>
                 </div>
                 <div>
-                    <p className={incomeDisplay.conversion}>${moneyMult} per </p>
+                    <p className={incomeDisplay.conversion}>${multiplier} per </p>
                     <HoneyIcon />
                 </div>
             </div>
@@ -23,7 +23,7 @@ export default function IncomeDisplay ({money, moneyMult, income}) {
 
 IncomeDisplay.propTypes = {
     money: PropTypes.number,
-    moneyMult: PropTypes.number,
+    multiplier: PropTypes.number,
     income: PropTypes.number
 }
 

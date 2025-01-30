@@ -83,6 +83,7 @@
 }
 
 .itemContainer {
+    flex: 1 1 0;
     display: flex;
     background-color: #da9100;
     border-radius: 8px;
