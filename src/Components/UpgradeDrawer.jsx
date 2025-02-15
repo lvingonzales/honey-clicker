@@ -1,14 +1,20 @@
 import PropTypes from "prop-types";
 import upgrades from "../Styles/Upgrades.module.css";
-import React from "react";
+import React, { useEffect } from "react";
 
 
 export default function UpgradeDrawer(props) {
+
+  useEffect (() => {
+    document.getElementById("upgradeDrawer").classList.toggle(upgrades.active);
+  }, []);
+  
   const closeMenu = () => {
-    document.getElementById("upgradeDrawer").classList.remove(upgrades.active);
+    document.getElementById("upgradeDrawer").classList.toggle(upgrades.active);
+    document.getElementById("upgradeDrawer").classList.toggle(upgrades.inactive);
   };
   return (
-    <div id="upgradeDrawer" className={upgrades.wrapper}>
+    <div id="upgradeDrawer" className={upgrades.wrapper + ' ' + upgrades.active + ' ' + upgrades.inactive}>
       <div className={upgrades.tabs}>
         <button className={upgrades.btn}>Extractors</button>
         <button className={upgrades.btn}>Upgrades</button>

@@ -2,7 +2,8 @@ import upgrades from "../Styles/Upgrades.module.css";
 
 export default function UpgradeButton () {
     const handleClick = () => {
-        document.getElementById("upgradeDrawer").classList.add(upgrades.active);
+        document.getElementById("upgradeDrawer").classList.toggle(upgrades.active)
+        document.getElementById("upgradeDrawer").classList.toggle(upgrades.inactive);
     }
     return  (
         <div className={upgrades.container}>

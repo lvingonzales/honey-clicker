@@ -1,11 +1,10 @@
 import PropTypes from "prop-types";
 import upgrades from "../Styles/Upgrades.module.css";
 import honeyIcon from "/Honey.svg";
-import { useContext, useState } from "react";
-import { MoneyContext } from "./Contexts";
+import { useState } from "react";
 
-export default function Upgrade ({upgrade, setMultiplier, currentMultiplier}) {
-  const {money, setMoney} = useContext(MoneyContext);
+
+export default function Upgrade ({upgrade, setMultiplier, currentMultiplier, money, setMoney}) {
   const [cost, setCost] = useState(upgrade.baseCost);
 
   const handleClick = () => {
@@ -48,5 +47,7 @@ export default function Upgrade ({upgrade, setMultiplier, currentMultiplier}) {
 Upgrade.propTypes = {
   upgrade: PropTypes.object,
   setMultiplier: PropTypes.func,
-  currentMultiplier: PropTypes.number
+  currentMultiplier: PropTypes.number,
+  money: PropTypes.number,
+  setMoney: PropTypes.func
 }
