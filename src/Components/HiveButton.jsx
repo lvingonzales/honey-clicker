@@ -2,13 +2,16 @@ import hiveButton from "../Styles/HiveButton.module.css";
 import hiveBox from "../Assets/HiveBox.svg";
 import PropTypes from "prop-types";
 
-export default function HiveButton({ money ,setMoney, moneyMult }) {
+
+export default function HiveButton({multiplier, bees, setBees}) {
+
     const handleClick = () => {
-        setMoney(money + moneyMult)
+      setBees (bees + 1);
+        // setMoney((Math.round((money + multiplier)*100)/100));
     }
   return (
-    <button className={hiveButton.icon} onClick={handleClick}>
-        <img src={hiveBox} alt="Hive Box" />
+    <button id="apiary" className={hiveButton.icon} onClick={handleClick}>
+        <img id="hiveBox" src={hiveBox} alt="Hive Box" />
     </button>
   ) 
 }
@@ -16,5 +19,7 @@ export default function HiveButton({ money ,setMoney, moneyMult }) {
 HiveButton.propTypes = {
     money: PropTypes.number,
     setMoney: PropTypes.func,
-    moneyMult: PropTypes.number
+    multiplier: PropTypes.number,
+    bees: PropTypes.number,
+    setBees: PropTypes.func
 }

@@ -11,4 +11,8 @@
 
 .bottomBar {
     flex: 1 1 0;
+    display: flex;
+    place-items: center;
+    place-content: space-around;
+    position: relative;
 }
