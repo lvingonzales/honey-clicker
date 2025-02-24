@@ -16,8 +16,8 @@ export default function UpgradeDrawer(props) {
   return (
     <div id="upgradeDrawer" className={upgrades.wrapper + ' ' + upgrades.active + ' ' + upgrades.inactive}>
       <div className={upgrades.tabs}>
-        <button className={upgrades.btn}>Extractors</button>
-        <button className={upgrades.btn}>Upgrades</button>
+        {/* <button className={upgrades.btn}>Upgrades</button> */}
+        <div className={upgrades.title}>Upgrades</div>
         <button
           className={upgrades.btn + " " + upgrades.close}
           onClick={closeMenu}

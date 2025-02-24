@@ -4,16 +4,18 @@ import honeyIcon from "/Honey.svg";
 import { useState } from "react";
 
 
-export default function Upgrade ({upgrade, setMultiplier, currentMultiplier, money, setMoney}) {
-  const [cost, setCost] = useState(upgrade.baseCost);
+export default function Upgrade ({upgrade, money, setMoney}) {
+  const [cost, setCost] = useState(upgrade.cost);
 
   const handleClick = () => {
-    if (money < cost) {
+    if (money.current < cost) {
       return;
     }
-    setMoney(Math.round((money - cost)*100)/100);
-    setCost((Math.round((cost + (cost * 0.2))* 100) / 100));
-    setMultiplier(currentMultiplier + upgrade.baseMultiplier);
+    upgrade.currentLevel = upgrade.currentLevel + 1;
+    money.current = money.current - cost;
+    setMoney(money.current.toFixed(2));
+    upgrade.cost = (Math.round((upgrade.cost + (upgrade.cost * upgrade.costMult))* 100) / 100);
+    setCost(upgrade.cost);
   }
     return (
         <li className={upgrades.listItem}>
@@ -24,12 +26,13 @@ export default function Upgrade ({upgrade, setMultiplier, currentMultiplier, mon
                 </div>
                 <div className={upgrades.itemDescWrapper}>
                   <div className={upgrades.itemName}>
-                    <span>{upgrade.name}</span>
+                    <span>{upgrade.name} lvl: {upgrade.currentLevel}</span>
                   </div>
                   <div className={upgrades.itemDesc}>
                     <p>
                       {upgrade.description}
                     </p>
+                    <p>Current Effect: {upgrade.effect()}</p>
                   </div>
                   <div className={upgrades.itemCost}>
                     <span>Cost: ${cost}</span>
