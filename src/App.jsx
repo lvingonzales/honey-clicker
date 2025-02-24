@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 // import HiveButton from "./Components/HiveButton";
 import "./Styles/App.css";
-// import IncomeDisplay from "./Components/IncomeDisplay";
+import IncomeDisplay from "./Components/IncomeDisplay";
 // import UpgradeButton from "./Components/UpgradeButton";
 // import UpgradeDrawer from "./Components/UpgradeDrawer";
 // import Upgrade from "./Components/Upgrade";
@@ -61,24 +61,25 @@ export default function App() {
 
   return (
     <>
-      <div>
+        <div className="topBar">
+          <IncomeDisplay
+            money={money}
+            income={honeyProductionRef.current * beeList[currentBee].baseValue}
+            bees={beeRef.current}
+            beeType={beeList[currentBee].name}
+          />
+        </div>
+      {/* <div>
         <div>Queen Type: {beeList[currentBee].name}</div>
         <div>Money: {moneyRef.current}</div>
         <div>Money/s: {honeyProductionRef.current * beeList[currentBee].baseValue}</div>
         <div>Honey u/s: {honeyProductionRef.current}</div>
         <div>Bees: {beeRef.current}</div>
-      </div>
+      </div> */}
       <button onClick={updateBees}>Click me</button>
     </>
     // <>
-    //     <div className="topBar">
-    //       <IncomeDisplay
-    //         money={money}
-    //         multiplier={multiplier}
-    //         income={income}
-    //         bees={bees}
-    //       />
-    //     </div>
+    
     //     <div className="main">
     //       <HiveButton
     //         multiplier={multiplier}

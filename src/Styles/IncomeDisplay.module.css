@@ -4,8 +4,11 @@
 }
 
 .wrapper {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    border: 1px solid black;
+    place-content: center;
+    place-items: center;
 }
 
 .wrapper > div {
@@ -19,5 +22,18 @@
     margin: 0px;
 }
 
+.wrapper > p {
+    grid-row: span 2;
+    margin: 0px;
+}
+
+.bank {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.income {
+    grid-area: 2 / 2 / 3 / 3;
+    font-size: 0.8rem !important;
+}
 
 
