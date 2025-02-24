@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-// import HiveButton from "./Components/HiveButton";
+import HiveButton from "./Components/HiveButton";
 import "./Styles/App.css";
 import IncomeDisplay from "./Components/IncomeDisplay";
 // import UpgradeButton from "./Components/UpgradeButton";
@@ -50,7 +50,7 @@ export default function App() {
     }, 1000);
   }, []);
 
-  const updateBees = (evt) => {
+  function updateBees (evt) {
     let bee = beeList[currentBee];
     beeRef.current = beeRef.current + bee.baseHatch;
     honeyProductionRef.current = bee.baseProduct * beeRef.current;
@@ -69,6 +69,12 @@ export default function App() {
             beeType={beeList[currentBee].name}
           />
         </div>
+
+        <div className="main">
+          <HiveButton
+            updateBees={updateBees}
+          />
+        </div>
       {/* <div>
         <div>Queen Type: {beeList[currentBee].name}</div>
         <div>Money: {moneyRef.current}</div>
@@ -76,19 +82,9 @@ export default function App() {
         <div>Honey u/s: {honeyProductionRef.current}</div>
         <div>Bees: {beeRef.current}</div>
       </div> */}
-      <button onClick={updateBees}>Click me</button>
+      {/* <button onClick={updateBees}>Click me</button> */}
     </>
     // <>
-    
-    //     <div className="main">
-    //       <HiveButton
-    //         multiplier={multiplier}
-    //         money={money}
-    //         setMoney={setMoney}
-    //         bees={bees}
-    //         setBees={setBees}
-    //       />
-    //     </div>
     //     <div className="bottomBar">
     //       <UpgradeButton />
     //       <UpgradeDrawer>
