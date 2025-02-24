@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import HiveButton from "./Components/HiveButton";
+import { useEffect, useRef, useState } from "react";
+// import HiveButton from "./Components/HiveButton";
 import "./Styles/App.css";
-import IncomeDisplay from "./Components/IncomeDisplay";
-import UpgradeButton from "./Components/UpgradeButton";
-import UpgradeDrawer from "./Components/UpgradeDrawer";
-import Upgrade from "./Components/Upgrade";
+// import IncomeDisplay from "./Components/IncomeDisplay";
+// import UpgradeButton from "./Components/UpgradeButton";
+// import UpgradeDrawer from "./Components/UpgradeDrawer";
+// import Upgrade from "./Components/Upgrade";
 
 // const Upgrades = [
 //   {
@@ -21,57 +21,54 @@ import Upgrade from "./Components/Upgrade";
 //   }
 // ];
 
-
+const beeList = [
+  {
+    name: "Wild Bees",
+    baseProduct: 1,
+    baseHatch: 1,
+    baseValue: 0.25,
+  },
+];
 
 export default function App() {
-  // const [bees, setBees] = useState(0);
-  // const [money, setMoney] = useState(0);
-  // const [tick, setTick] = useState(0);
-  // const [multiplier, setMultiplier] = useState(1);
-  // const [beeProduction, setBeeProduction] = useState(0.5);
-  // const income = 0;
 
-  // const incTick = () => {
-  //   console.log("Increment tick: ", tick);
-  //   setTick(tick + 1);
-  // }
+  const [currentBee, setCurrentBee] = useState(0);
+  const moneyRef = useRef(0);
+  const honeyProductionRef = useRef(0);
+  const beeRef = useRef(0);
+  const [money, setMoney] = useState(moneyRef.current);
 
-  // useEffect (() => {
-  //   console.log("Set Money Tick: ", tick);
-  //   setMoney(money + (bees * beeProduction * multiplier));
-  // }, [tick])
-
-  // useEffect (() => {
-  //   const interval = setInterval(() => {
-  //     incTick();
-  //   }, 1000);
-    
-  //   return () => {
-  //     clearInterval(interval);
-  //   }
-  // })
-
-  const [counter, setCounter]= useState(1);
-  const [power, setPower] = useState (150);
-
-  function calculate(value) {
-    console.log(counter);
-    value = counter * (power / 100);
-    // Add percentage increases to the power value,  and the multiplicative upgrades go into an array that is iterated over.
-    
-    setCounter(value);
-  }
-  
-
-  useEffect (() => {
+  useEffect(() => {
     setInterval(() => {
-      setCounter(count => count * (power /100))
+      let bee = beeList[currentBee];
+      beeRef.current = beeRef.current + bee.baseHatch;
+      honeyProductionRef.current = bee.baseProduct * beeRef.current;
+      moneyRef.current =
+        moneyRef.current + honeyProductionRef.current * bee.baseValue;
+
+      setMoney(moneyRef.current);
     }, 1000);
-  }, [])
+  }, []);
+
+  const updateBees = (evt) => {
+    let bee = beeList[currentBee];
+    beeRef.current = beeRef.current + bee.baseHatch;
+    honeyProductionRef.current = bee.baseProduct * beeRef.current;
+    moneyRef.current =
+      moneyRef.current + honeyProductionRef.current * bee.baseValue;
+    setMoney(moneyRef.current);
+  };
 
   return (
     <>
-      <div>{counter}</div>
+      <div>
+        <div>Queen Type: {beeList[currentBee].name}</div>
+        <div>Money: {moneyRef.current}</div>
+        <div>Money/s: {honeyProductionRef.current * beeList[currentBee].baseValue}</div>
+        <div>Honey u/s: {honeyProductionRef.current}</div>
+        <div>Bees: {beeRef.current}</div>
+      </div>
+      <button onClick={updateBees}>Click me</button>
     </>
     // <>
     //     <div className="topBar">
