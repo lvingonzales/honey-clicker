@@ -6,6 +6,8 @@ import UpgradeButton from "./Components/UpgradeButton";
 import UpgradeDrawer from "./Components/UpgradeDrawer";
 import Upgrade from "./Components/Upgrade";
 
+// Upgrades
+// Each upgrade is an object with set properties as part of a template
 const Upgrades = [
   {
     name: "Bee Keepers",
@@ -13,7 +15,7 @@ const Upgrades = [
     cost: 100,
     costMult: 0.2,
     currentLevel: 0,
-    effect: function() {
+    effect: function () {
       return this.currentLevel;
     },
   },
@@ -24,19 +26,18 @@ const Upgrades = [
     cost: 1000,
     costMult: 2,
     currentLevel: 0,
-    effect: function() {
+    effect: function () {
       return Math.pow(2, this.currentLevel);
     },
   },
   {
     name: "Honey Centrifuges",
-    description:
-      "Each level boosts your honey production by 10%(.10)",
+    description: "Each level boosts your honey production by 10%(.10)",
     cost: 150,
     costMult: 0.4,
     currentLevel: 0,
-    effect: function() {
-      return ((100 + (this.currentLevel * 10))/100);
+    effect: function () {
+      return (100 + this.currentLevel * 10) / 100;
     },
   },
   {
@@ -46,23 +47,23 @@ const Upgrades = [
     cost: 1500,
     costMult: 2,
     currentLevel: 0,
-    effect: function() {
+    effect: function () {
       return Math.pow(2, this.currentLevel);
     },
   },
   {
     name: "Nicer jars",
-    description:
-      "Each level boosts your Honey value by 20% (.20).",
+    description: "Each level boosts your Honey value by 20% (.20).",
     cost: 500,
     costMult: 0.8,
     currentLevel: 0,
-    effect: function() {
-        return ((100 + (this.currentLevel * 20))/100);
+    effect: function () {
+      return (100 + this.currentLevel * 20) / 100;
     },
   },
 ];
 
+// The bee list is part of the prestige system, each bee increases the base values
 const beeList = [
   {
     name: "Wild Bees",
@@ -79,26 +80,49 @@ export default function App() {
   const beeRef = useRef(0);
   const [money, setMoney] = useState(moneyRef.current);
 
+  // Updates values on a one second interval
   useEffect(() => {
     setInterval(() => {
       let bee = beeList[currentBee];
+      // "Upgrades[x]" refers to the upgrades list array
       beeRef.current =
-        beeRef.current + ((bee.baseHatch + Upgrades[0].effect()) * Upgrades[1].effect());
-      honeyProductionRef.current = ((bee.baseProduct * beeRef.current) * Upgrades[2].effect()) * Upgrades[3].effect();
-      moneyRef.current =
-        moneyRef.current + (honeyProductionRef.current * bee.baseValue) * Upgrades[4].effect();
+        beeRef.current +
+        (bee.baseHatch + Upgrades[0].effect()) * Upgrades[1].effect();
 
+      honeyProductionRef.current =
+        bee.baseProduct *
+        beeRef.current *
+        Upgrades[2].effect() *
+        Upgrades[3].effect();
+
+      moneyRef.current =
+        moneyRef.current +
+        honeyProductionRef.current * bee.baseValue * Upgrades[4].effect();
+
+      // Calculation order is Base value + flat increases * percentage increases * multiplicative increases
+
+      // Rerenders the components to reflect the above changes
       setMoney(moneyRef.current.toFixed(2));
     }, 1000);
   }, []);
 
   function updateBees(evt) {
     let bee = beeList[currentBee];
+
+    // On demand update and rerender function 
     beeRef.current =
       beeRef.current + (bee.baseHatch + Upgrades[0].currentLevel);
-    honeyProductionRef.current = ((bee.baseProduct * beeRef.current) * Upgrades[2].effect()) * Upgrades[3].effect();
+
+    honeyProductionRef.current =
+      bee.baseProduct *
+      beeRef.current *
+      Upgrades[2].effect() *
+      Upgrades[3].effect();
+
     moneyRef.current =
-      moneyRef.current + (honeyProductionRef.current * bee.baseValue) * Upgrades[4].effect();
+      moneyRef.current +
+      honeyProductionRef.current * bee.baseValue * Upgrades[4].effect();
+
     setMoney(moneyRef.current.toFixed(2));
   }
 
@@ -107,7 +131,9 @@ export default function App() {
       <div className="topBar">
         <IncomeDisplay
           money={money}
-          income={(honeyProductionRef.current * beeList[currentBee].baseValue).toFixed(2)}
+          income={(
+            honeyProductionRef.current * beeList[currentBee].baseValue
+          ).toFixed(2)}
           bees={beeRef.current}
           beeType={beeList[currentBee].name}
         />

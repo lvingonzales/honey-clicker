@@ -8,9 +8,12 @@ export default function Upgrade ({upgrade, money, setMoney}) {
   const [cost, setCost] = useState(upgrade.cost);
 
   const handleClick = () => {
+
     if (money.current < cost) {
       return;
     }
+    
+    // updates the objects / references and then triggers re-renders
     upgrade.currentLevel = upgrade.currentLevel + 1;
     money.current = money.current - cost;
     setMoney(money.current.toFixed(2));
