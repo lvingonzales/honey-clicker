@@ -25,7 +25,3 @@ IncomeDisplay.propTypes = {
     bees: PropTypes.number,
     beeType: PropTypes.string
 }
-
-function HoneyIcon () {
-    return <img src={honeyIcon} className={incomeDisplay.icon} alt="Honey Drop Icon" />
-}
