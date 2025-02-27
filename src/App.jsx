@@ -8,6 +8,7 @@ import Upgrade from "./Components/Upgrade";
 
 // Upgrades
 // Each upgrade is an object with set properties as part of a template
+// NOTE TO SELF ADD ATTRIBUTION TO BEE VECTOR ARTIST: <a href="https://www.vecteezy.com/free-vector/bee">Bee Vectors by Vecteezy</a>
 const Upgrades = [
   {
     name: "Bee Keepers",
@@ -78,6 +79,7 @@ export default function App() {
   const moneyRef = useRef(0);
   const honeyProductionRef = useRef(0);
   const beeRef = useRef(0);
+  const incomeRef = useRef(0);
   const [money, setMoney] = useState(moneyRef.current);
 
   // Updates values on a one second interval
@@ -98,6 +100,8 @@ export default function App() {
       moneyRef.current =
         moneyRef.current +
         honeyProductionRef.current * bee.baseValue * Upgrades[4].effect();
+
+      incomeRef.current = (honeyProductionRef.current * beeList[currentBee].baseValue).toFixed(2);
 
       // Calculation order is Base value + flat increases * percentage increases * multiplicative increases
 
@@ -123,6 +127,8 @@ export default function App() {
       moneyRef.current +
       honeyProductionRef.current * bee.baseValue * Upgrades[4].effect();
 
+    incomeRef.current = (honeyProductionRef.current * beeList[currentBee].baseValue).toFixed(2);
+
     setMoney(moneyRef.current.toFixed(2));
   }
 
@@ -130,10 +136,8 @@ export default function App() {
     <>
       <div className="topBar">
         <IncomeDisplay
-          money={money}
-          income={(
-            honeyProductionRef.current * beeList[currentBee].baseValue
-          ).toFixed(2)}
+          money={+money}
+          income={+incomeRef.current}
           bees={beeRef.current}
           beeType={beeList[currentBee].name}
         />

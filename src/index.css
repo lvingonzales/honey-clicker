@@ -2,6 +2,11 @@
 
 :root {
   font-family: Abeezee;
+  background-image: url(/bee-background.svg);
+  background-size: auto;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-color: #FABC3C;
 }
 
 body {
