@@ -54,6 +54,6 @@ Upgrade.propTypes = {
   upgrade: PropTypes.object,
   setMultiplier: PropTypes.func,
   currentMultiplier: PropTypes.number,
-  money: PropTypes.number,
+  money: PropTypes.object,
   setMoney: PropTypes.func
 }
